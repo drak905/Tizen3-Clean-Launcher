@@ -46,12 +46,22 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----------------------------------------------------------------------------
-Third-party material in launcher/assets/ keeps its own licence: CleanFrame
-(MIT), photographs (Unsplash License), Simple Icons (CC0), Manrope (SIL OFL
-1.1). See launcher/licenses/. Brand marks belong to their owners.
 "@ | Set-Content -Encoding ascii (Join-Path $Dest 'LICENSE')
+
+# Third-party terms live in NOTICE.md so GitHub recognises LICENSE as plain MIT.
+$notice = @(
+    '# Notices', '',
+    'The MIT licence in `LICENSE` covers this project''s own code and documentation.', '',
+    'Third-party material keeps its own terms (texts and source records in `launcher/licenses/`):', '',
+    '| Material | Source | Licence |',
+    '|---|---|---|',
+    '| Design, pre-rendered glass, icon metrics | [CleanFrame](https://github.com/nthnclrk/CleanFrame) by Nathan Clark | MIT |',
+    '| Wallpaper photographs | Unsplash photographers credited in `launcher/licenses/photo-sources.json` | Unsplash License |',
+    '| Brand icons (YouTube, Netflix, Apple TV, Spotify) | [Simple Icons](https://simpleicons.org) | CC0 1.0 |',
+    '| Manrope font (static instances) | Manrope by Mikhail Sharanda | SIL OFL 1.1 |', '',
+    'Brand marks identify services and belong to their owners; this project is not affiliated with Samsung, Apple or any streaming service.'
+)
+[IO.File]::WriteAllText((Join-Path $Dest 'NOTICE.md'), ($notice -join "`n") + "`n")
 
 # Leak check over every text file in the export.
 $deny = @()

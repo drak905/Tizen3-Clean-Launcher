@@ -2,7 +2,7 @@
 
 **Project page (Tiếng Việt / English): https://drak905.github.io/Tizen3-Clean-Launcher/**
 
-A quiet, [CleanFrame](https://github.com/nthnclrk/CleanFrame)-style home screen for a **2017 Samsung Smart TV on Tizen 3.0**, plus the SDB tooling, signing workflow and tests used to build and install it. Written for the next human *or coding agent* working on such a TV. MIT licensed (see [LICENSE](LICENSE); third-party assets keep their own terms).
+A quiet, [CleanFrame](https://github.com/nthnclrk/CleanFrame)-style home screen for a **2017 Samsung Smart TV on Tizen 3.0**, plus the SDB tooling, signing workflow and tests used to build and install it. Written for the next human *or coding agent* working on such a TV. MIT licensed (see [LICENSE](LICENSE); third-party assets keep their own terms, see [NOTICE.md](NOTICE.md)).
 
 ![Launcher](docs/assets/home.jpg)
 
