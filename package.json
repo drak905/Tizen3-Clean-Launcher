@@ -1,0 +1,11 @@
+{
+  "name": "tizen3-clean-launcher",
+  "private": true,
+  "version": "2.1.0",
+  "description": "CleanFrame-style home screen for a 2017 Samsung Tizen 3.0 TV (UA43M5503), plus SDB tooling and tests.",
+  "scripts": {
+    "test": "playwright test",
+    "test:tv": "python -m pytest tests -q"
+  },
+  "devDependencies": { "@playwright/test": "1.64.1" }
+}

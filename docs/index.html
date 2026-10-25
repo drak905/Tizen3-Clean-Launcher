@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi" data-lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tizen 3.0 Clean Launcher — Màn hình chính gọn gàng cho TV Samsung đời cũ</title>
+  <meta name="description" content="Màn hình chính tối giản, phong cách CleanFrame, cho TV Samsung Tizen 3.0 (2017). A clean, CleanFrame-style home screen for 2017 Samsung Tizen 3.0 TVs.">
+  <meta property="og:title" content="Tizen 3.0 Clean Launcher">
+  <meta property="og:description" content="Màn hình chính tối giản cho TV Samsung Tizen 3.0 · A clean home screen for Samsung Tizen 3.0 TVs">
+  <meta property="og:image" content="assets/home.jpg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main"><span lang="vi">Bỏ qua tới nội dung</span><span lang="en">Skip to content</span></a>
+
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Tizen 3.0 Clean Launcher">
+      <img src="assets/favicon.png" alt="" width="36" height="30">
+      <span>Tizen 3.0 Clean Launcher</span>
+    </a>
+    <nav class="top-nav" aria-label="Menu">
+      <a href="#features"><span lang="vi">Tính năng</span><span lang="en">Features</span></a>
+      <a href="#how"><span lang="vi">Cách hoạt động</span><span lang="en">How it works</span></a>
+      <a href="#install"><span lang="vi">Cài đặt</span><span lang="en">Install</span></a>
+      <a href="https://github.com/drak905/Tizen3-Clean-Launcher">GitHub</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Ngôn ngữ / Language">
+      <button type="button" data-set-lang="vi" aria-pressed="true">VI</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="eyebrow">
+          <span lang="vi">Samsung Smart TV · Tizen 3.0 · 2017</span>
+          <span lang="en">Samsung Smart TV · Tizen 3.0 · 2017</span>
+        </p>
+        <h1>
+          <span lang="vi">Một màn hình chính yên tĩnh cho chiếc TV Samsung đời cũ.</span>
+          <span lang="en">A quiet home screen for an older Samsung TV.</span>
+        </h1>
+        <p class="lead">
+          <span lang="vi">Ảnh phong cảnh toàn màn hình, đồng hồ 24 giờ và một thanh ứng dụng kính mờ: YouTube, Netflix, Apple TV, FPT Play, Spotify. Không quảng cáo, không banner, không gỡ bất kỳ ứng dụng hệ thống nào.</span>
+          <span lang="en">A full-screen photograph, a 24-hour clock and a frosted-glass dock: YouTube, Netflix, Apple TV, FPT Play, Spotify. No ads, no banners, and no system app removed.</span>
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/drak905/Tizen3-Clean-Launcher">
+            <span lang="vi">Xem mã nguồn trên GitHub</span><span lang="en">View the source on GitHub</span>
+          </a>
+          <a class="btn" href="#install"><span lang="vi">Hướng dẫn cài đặt</span><span lang="en">How to install</span></a>
+        </div>
+      </div>
+      <figure class="tv">
+        <div class="tv-screen"><img src="assets/home.jpg" width="1600" height="900"
+          alt="Màn hình chính: ảnh bờ biển, đồng hồ 21:58, thanh ứng dụng kính mờ với YouTube, Netflix, Apple TV, FPT Play, Spotify"></div>
+        <div class="tv-stand" aria-hidden="true"></div>
+        <figcaption>
+          <span lang="vi">Ảnh chụp giao diện ở độ phân giải 1920×1080, đúng như trên TV.</span>
+          <span lang="en">The interface at 1920×1080, as rendered for the TV.</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ================= WHY ================= -->
+    <section class="band why">
+      <div class="wrap two">
+        <div>
+          <h2><span lang="vi">Vì sao có dự án này?</span><span lang="en">Why this exists</span></h2>
+          <p lang="vi">Smart Hub trên các TV Samsung 2017 chậm, đầy ô quảng cáo, và luôn mở trước khi bạn kịp chọn ứng dụng. Dự án này thay trải nghiệm đó bằng một màn hình chính tự viết: chỉ những ứng dụng bạn thật sự dùng, mở bằng một nút bấm trên remote.</p>
+          <p lang="en">Smart Hub on 2017 Samsung TVs is slow, full of sponsored tiles, and always gets in the way before you reach your app. This project replaces that with a self-made home screen: only the apps you actually use, one button press away.</p>
+          <p lang="vi">Giao diện lấy cảm hứng (và tài nguyên ảnh, kính, biểu tượng) từ <a href="https://github.com/nthnclrk/CleanFrame">CleanFrame</a>, được viết lại hoàn toàn để chạy trên trình duyệt WebKit đời 2017 của Tizen 3.0.</p>
+          <p lang="en">The design (and its photos, glass and icons) comes from <a href="https://github.com/nthnclrk/CleanFrame">CleanFrame</a>, rewritten from scratch to run on Tizen 3.0's 2017-era WebKit browser engine.</p>
+        </div>
+        <ul class="facts">
+          <li><strong>UA43M5503</strong><span lang="vi">TV đã thử nghiệm</span><span lang="en">tested TV</span></li>
+          <li><strong>WebKit 538</strong><span lang="vi">trình duyệt của TV</span><span lang="en">the TV's browser</span></li>
+          <li><strong>0</strong><span lang="vi">ứng dụng hệ thống bị gỡ</span><span lang="en">system apps removed</span></li>
+          <li><strong>25</strong><span lang="vi">bài kiểm thử tự động</span><span lang="en">automated tests</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="band" id="features">
+      <div class="wrap">
+        <h2><span lang="vi">Tính năng</span><span lang="en">Features</span></h2>
+        <div class="grid">
+          <article class="card">
+            <h3><span lang="vi">Thanh ứng dụng kính mờ</span><span lang="en">Frosted-glass dock</span></h3>
+            <p lang="vi">Kính mờ được dựng sẵn thành ảnh nên TV đời cũ vẫn chạy mượt, không cần hiệu ứng làm mờ trực tiếp.</p>
+            <p lang="en">The blur is pre-rendered into images, so an old TV stays smooth without live blur effects.</p>
+          </article>
+          <article class="card">
+            <h3><span lang="vi">15 ảnh nền phong cảnh</span><span lang="en">15 landscape wallpapers</span></h3>
+            <p lang="vi">Nút <b>Wallpaper</b> hoặc phím <b>vàng</b> trên remote đổi ảnh; lựa chọn được ghi nhớ sau khi tắt TV.</p>
+            <p lang="en">The <b>Wallpaper</b> control or the <b>yellow</b> remote key switches photos; your choice is remembered.</p>
+          </article>
+          <article class="card">
+            <h3><span lang="vi">Đồng hồ 24 giờ</span><span lang="en">24-hour clock</span></h3>
+            <p lang="vi">Hiển thị kiểu <code>21:05</code>, <code>07:03</code> ở góc trên bên trái, theo giờ của TV.</p>
+            <p lang="en">Shown as <code>21:05</code>, <code>07:03</code> in the top-left corner, using the TV's clock.</p>
+          </article>
+          <article class="card">
+            <h3><span lang="vi">Tự quay lại màn hình chính</span><span lang="en">Comes back by itself</span></h3>
+            <p lang="vi">Khi thoát Apple TV hay FPT Play, TV thường nhảy về màn hình Samsung. Launcher phát hiện điều đó và tự hiện lại.</p>
+            <p lang="en">Apple TV and FPT Play normally drop you onto Samsung's screen when they close. The launcher notices and returns.</p>
+          </article>
+          <article class="card">
+            <h3><span lang="vi">Điều khiển bằng remote</span><span lang="en">Made for the remote</span></h3>
+            <p lang="vi">Trái/Phải để chọn, Lên/Xuống để chuyển giữa thanh ứng dụng và các nút góc phải, OK để mở, Return luôn ở lại màn hình chính.</p>
+            <p lang="en">Left/Right to move, Up/Down between the dock and the top-right controls, OK to open, Return always stays Home.</p>
+          </article>
+          <article class="card">
+            <h3><span lang="vi">Chặn quảng cáo an toàn</span><span lang="en">Reversible ad blocking</span></h3>
+            <p lang="vi">Chặn quảng cáo và theo dõi (ACR) bằng DNS và cài đặt của TV; mọi thay đổi đều có thể hoàn tác.</p>
+            <p lang="en">Ads and viewing-tracking (ACR) are blocked with DNS and TV settings; every change can be undone.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section class="band gallery-band">
+      <div class="wrap">
+        <figure class="shot">
+          <img src="assets/controls.jpg" width="1600" height="900" loading="lazy"
+            alt="Nút All apps đang được chọn với lớp kính mờ phía sau; Netflix được chọn trên thanh ứng dụng">
+          <figcaption>
+            <span lang="vi">Nhấn Lên để tới các nút góc phải: Wallpaper, All apps (danh sách ứng dụng Samsung), Settings (cài đặt TV).</span>
+            <span lang="en">Press Up for the top-right controls: Wallpaper, All apps (Samsung's app list), Settings (TV settings).</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= HOW ================= -->
+    <section class="band" id="how">
+      <div class="wrap">
+        <h2><span lang="vi">Cách hoạt động</span><span lang="en">How it works</span></h2>
+        <ol class="steps">
+          <li>
+            <h3><span lang="vi">Một ứng dụng web Tizen</span><span lang="en">A Tizen web app</span></h3>
+            <p lang="vi">HTML, CSS và JavaScript ES5 thuần, không framework. Mã được viết cho WebKit 538: không biến CSS, không <code>gap</code>, không <code>backdrop-filter</code>, không font WOFF2.</p>
+            <p lang="en">Plain HTML, CSS and ES5 JavaScript, no framework. It is written for WebKit 538: no CSS variables, no <code>gap</code>, no <code>backdrop-filter</code>, no WOFF2 fonts.</p>
+          </li>
+          <li>
+            <h3><span lang="vi">Ký bằng chứng chỉ Samsung</span><span lang="en">Signed with a Samsung certificate</span></h3>
+            <p lang="vi">TV bán lẻ chỉ cài gói đã ký bằng chứng chỉ Samsung miễn phí gắn với mã thiết bị (DUID) của chính TV đó.</p>
+            <p lang="en">Retail TVs only install packages signed with a free Samsung certificate tied to that TV's device ID (DUID).</p>
+          </li>
+          <li>
+            <h3><span lang="vi">Cài qua Developer Mode</span><span lang="en">Installed over Developer Mode</span></h3>
+            <p lang="vi">Máy tính kết nối với TV qua Wi-Fi bằng công cụ <code>sdb</code> của Samsung rồi cài ứng dụng. Sau đó có thể tắt Developer Mode.</p>
+            <p lang="en">The PC talks to the TV over Wi-Fi with Samsung's <code>sdb</code> tool and installs the app. Developer Mode can be turned off afterwards.</p>
+          </li>
+          <li>
+            <h3><span lang="vi">Mở ứng dụng đúng cách</span><span lang="en">Opening apps the right way</span></h3>
+            <p lang="vi">Trên Tizen 3.0, lệnh mở ứng dụng thông thường không đưa được ứng dụng đang chạy nền lên trước, nên launcher dùng <code>launchAppControl</code> và tự thử lại nếu cần.</p>
+            <p lang="en">On Tizen 3.0 the usual launch call doesn't bring a background app to the front, so the launcher uses <code>launchAppControl</code> and retries when needed.</p>
+          </li>
+          <li>
+            <h3><span lang="vi">Kiểm thử trước khi cài</span><span lang="en">Tested before every install</span></h3>
+            <p lang="vi">Playwright kiểm tra giao diện, điều hướng và việc mở ứng dụng trong trình duyệt; pytest kiểm tra TV thật: kết nối, bản sao lưu, DNS, và không có gói nào bị gỡ.</p>
+            <p lang="en">Playwright checks layout, navigation and launching in a browser; pytest checks the real TV: connection, backups, DNS, and that no package was removed.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= INSTALL ================= -->
+    <section class="band install" id="install">
+      <div class="wrap two">
+        <div>
+          <h2><span lang="vi">Cài đặt (tóm tắt)</span><span lang="en">Install (short version)</span></h2>
+          <ol class="plain">
+            <li lang="vi">Trên TV: <b>Home → Apps → bấm 1 2 3 4 5</b>, bật <b>Developer Mode</b>, nhập IP máy tính, rồi rút điện TV 15 giây.</li>
+            <li lang="en">On the TV: <b>Home → Apps → press 1 2 3 4 5</b>, turn <b>Developer Mode</b> on, enter your PC's IP, then unplug the TV for 15 seconds.</li>
+            <li lang="vi">Trên máy tính Windows: cài Tizen CLI SDK và tải <code>sdb.exe</code> (không cần quyền admin).</li>
+            <li lang="en">On a Windows PC: install the Tizen CLI SDK and download <code>sdb.exe</code> (no admin rights needed).</li>
+            <li lang="vi">Tạo chứng chỉ Samsung miễn phí cho TV (cần đăng nhập tài khoản Samsung một lần).</li>
+            <li lang="en">Create a free Samsung certificate for your TV (one Samsung account sign-in).</li>
+            <li lang="vi">Sửa danh sách ứng dụng trong <code>launcher/js/config.js</code>, chạy <code>npm test</code>, rồi <code>.\scripts\deploy.ps1</code>.</li>
+            <li lang="en">Edit the app list in <code>launcher/js/config.js</code>, run <code>npm test</code>, then <code>.\scripts\deploy.ps1</code>.</li>
+            <li lang="vi">Trên TV: <b>Settings → General → Smart Features</b>: bật <b>Autorun Last App</b>, tắt <b>Autorun Smart Hub</b> để TV khởi động vào launcher.</li>
+            <li lang="en">On the TV: <b>Settings → General → Smart Features</b>: turn <b>Autorun Last App</b> on and <b>Autorun Smart Hub</b> off so the TV starts in the launcher.</li>
+          </ol>
+          <p lang="vi">Hướng dẫn đầy đủ từng bước (và mọi “bẫy” đã gặp) nằm trong <a href="https://github.com/drak905/Tizen3-Clean-Launcher#readme">README</a>.</p>
+          <p lang="en">The full step-by-step guide (and every pitfall we hit) is in the <a href="https://github.com/drak905/Tizen3-Clean-Launcher#readme">README</a>.</p>
+        </div>
+        <aside class="note">
+          <h3><span lang="vi">Cần biết trước</span><span lang="en">Good to know</span></h3>
+          <ul>
+            <li lang="vi">Nút <b>Home</b> trên remote vẫn mở Smart Hub; không ứng dụng nào thay được nút này trên TV đời này.</li>
+            <li lang="en">The remote's <b>Home</b> button still opens Smart Hub; no app can take it over on this TV generation.</li>
+            <li lang="vi">Nút <b>Exit</b> luôn thoát ứng dụng theo quy định của Samsung.</li>
+            <li lang="en"><b>Exit</b> always leaves an app; that's Samsung's rule.</li>
+            <li lang="vi">Chứng chỉ có hạn 1 năm: cần ký và cài lại trước khi hết hạn.</li>
+            <li lang="en">Certificates last one year: re-sign and reinstall before they expire.</li>
+            <li lang="vi">Mới thử trên một TV (UA43M5503). Các TV Samsung 2017–2018 khác có thể tương tự nhưng chưa được xác nhận.</li>
+            <li lang="en">Tested on one TV (UA43M5503). Other 2017–2018 Samsung TVs may behave the same, but this is unconfirmed.</li>
+            <li lang="vi">Bạn tự chịu trách nhiệm khi dùng Developer Mode trên TV của mình.</li>
+            <li lang="en">Use Developer Mode on your own TV at your own risk.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= CREDITS ================= -->
+    <section class="band credits">
+      <div class="wrap">
+        <h2><span lang="vi">Ghi công</span><span lang="en">Credits</span></h2>
+        <p lang="vi">Thiết kế, ảnh nền, kính mờ dựng sẵn, biểu tượng thương hiệu và font Manrope lấy từ <a href="https://github.com/nthnclrk/CleanFrame">CleanFrame</a> của Nathan Clark (MIT). Ảnh theo giấy phép Unsplash, biểu tượng Simple Icons (CC0), Manrope (SIL OFL); chi tiết trong thư mục <code>launcher/licenses/</code>. Tham khảo thêm <a href="https://github.com/victaphu/glass-home-samsung-tv">Glass Home</a> và <a href="https://github.com/Samsung/tizen-agent-skills">tizen-agent-skills</a> của Samsung.</p>
+        <p lang="en">The design, wallpapers, pre-rendered glass, brand icons and the Manrope font come from <a href="https://github.com/nthnclrk/CleanFrame">CleanFrame</a> by Nathan Clark (MIT). Photos are under the Unsplash License, icons from Simple Icons (CC0), Manrope under the SIL OFL; details in <code>launcher/licenses/</code>. Also informed by <a href="https://github.com/victaphu/glass-home-samsung-tv">Glass Home</a> and Samsung's <a href="https://github.com/Samsung/tizen-agent-skills">tizen-agent-skills</a>.</p>
+        <p lang="vi">Mã nguồn của dự án được phát hành theo <a href="https://github.com/drak905/Tizen3-Clean-Launcher/blob/main/LICENSE">giấy phép MIT</a>; tài nguyên của bên thứ ba giữ nguyên giấy phép gốc.</p>
+        <p lang="en">The project's code is released under the <a href="https://github.com/drak905/Tizen3-Clean-Launcher/blob/main/LICENSE">MIT licence</a>; third-party assets keep their own terms.</p>
+        <p class="small" lang="vi">Dự án cá nhân, không liên kết với Samsung, Apple hay bất kỳ dịch vụ phát trực tuyến nào. Các nhãn hiệu thuộc về chủ sở hữu tương ứng.</p>
+        <p class="small" lang="en">A personal project, not affiliated with Samsung, Apple or any streaming service. Trademarks belong to their owners.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Tizen 3.0 Clean Launcher</span>
+    <a href="https://github.com/drak905/Tizen3-Clean-Launcher">github.com/drak905/Tizen3-Clean-Launcher</a>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>

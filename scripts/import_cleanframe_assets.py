@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+"""Copy the CleanFrame assets the launcher uses, in formats Tizen 3.0 (WebKit 538) can show.
+
+Source: https://github.com/nthnclrk/CleanFrame (MIT code; photos under the Unsplash License;
+icons CC0 / MIT; Manrope under the SIL OFL). Licence texts are copied to launcher/licenses/.
+
+- Wallpapers: centre-cropped to 1920x1080 (the pre-rendered glass is rendered for that crop),
+  so the TV needs no object-fit and decodes a smaller image.
+- Glass: <id>-study-soft.jpg (dock, CleanFrame's default "soft" material) and
+  <id>-field-blur.jpg (focus lens behind the top-right controls).
+- Font: Manrope is a variable WOFF2; WebKit 538 has neither WOFF2 nor variable fonts, so static
+  TTF instances are generated with fontTools.
+
+Usage: python scripts/import_cleanframe_assets.py [path-to-CleanFrame-checkout]
+"""
+import json
+import shutil
+import sys
+from pathlib import Path
+
+from fontTools.ttLib import TTFont
+from fontTools.varLib import instancer
+from PIL import Image
+
+ROOT = Path(__file__).resolve().parents[1]
+SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "_ref" / "CleanFrame"
+APP = SRC / "app" / "assets"
+OUT = ROOT / "launcher" / "assets"
+
+ICONS = ["youtube", "netflix", "appletv", "spotify", "apps", "settings", "art"]
+LICENCES = {
+    SRC / "LICENSE": "CleanFrame-MIT-LICENSE.txt",
+    SRC / "THIRD_PARTY_NOTICES.md": "CleanFrame-THIRD_PARTY_NOTICES.md",
+    APP / "manrope-OFL.txt": "Manrope-OFL.txt",
+    APP / "icons" / "SIMPLE-ICONS-LICENSE.txt": "Simple-Icons-CC0.txt",
+    APP / "icons" / "SOURCES.json": "icon-sources.json",
+    APP / "icons" / "ADDITIONAL-SOURCES.json": "icon-additional-sources.json",
+    APP / "wallpapers" / "SOURCES.json": "photo-sources.json",
+}
+
+
+def crop_1080(src: Path, dst: Path) -> None:
+    im = Image.open(src).convert("RGB")
+    w, h = im.size
+    scale = max(1920 / w, 1080 / h)
+    if scale != 1:
+        im = im.resize((round(w * scale), round(h * scale)), Image.LANCZOS)
+        w, h = im.size
+    left, top = (w - 1920) // 2, (h - 1080) // 2
+    im.crop((left, top, left + 1920, top + 1080)).save(dst, quality=86, optimize=True, progressive=False)
+
+
+def make_legacy_safe(font: TTFont) -> None:
+    """The 2017 TV's font sanitiser (OTS) rejects glyf flags that were 'reserved' then:
+    OVERLAP_SIMPLE (0x40) on simple glyphs and OVERLAP_COMPOUND (0x400) on components.
+    Clear them and drop hinting/layout-variation leftovers it doesn't need."""
+    glyf = font["glyf"]
+    for name in font.getGlyphOrder():
+        g = glyf[name]
+        if g.isComposite():
+            for c in g.components:
+                c.flags &= ~0x0400
+        elif g.numberOfContours > 0:
+            g.flags = bytearray(fl & ~0x40 for fl in g.flags)
+        if hasattr(g, "program"):
+            from fontTools.ttLib.tables import ttProgram
+            g.program = ttProgram.Program()
+            g.program.fromBytecode(b"")
+    for tag in ("STAT", "fpgm", "prep", "cvt ", "gasp", "hdmx", "LTSH", "VDMX", "MVAR", "HVAR", "avar", "fvar", "gvar"):
+        if tag in font:
+            del font[tag]
+
+
+def main() -> None:
+    if not APP.exists():
+        sys.exit(f"CleanFrame checkout not found at {SRC}")
+    for sub in ("wallpapers", "materials", "icons", "fonts"):
+        d = OUT / sub
+        if d.exists():
+            shutil.rmtree(d)
+        d.mkdir(parents=True)
+    (ROOT / "launcher" / "licenses").mkdir(parents=True, exist_ok=True)
+
+    sources = json.loads((APP / "wallpapers" / "SOURCES.json").read_text(encoding="utf-8"))
+    catalog_src = (APP / "wallpapers" / "catalog.js").read_text(encoding="utf-8")
+    catalog = json.loads(catalog_src[catalog_src.index("["): catalog_src.rindex("]") + 1])
+    by_id = {c["id"]: c for c in catalog}
+
+    walls = []
+    for s in sources:
+        wid = s["id"]
+        crop_1080(APP / "wallpapers" / f"{wid}.jpg", OUT / "wallpapers" / f"{wid}.jpg")
+        for kind in ("study-soft", "field-blur"):
+            shutil.copy2(APP / "materials" / f"{wid}-{kind}.jpg", OUT / "materials" / f"{wid}-{kind}.jpg")
+        walls.append({"id": wid, "name": s["name"], "tone": s.get("tone", "dark"),
+                      "credit": s.get("credit", ""), "dockQuiet": bool(by_id.get(wid, {}).get("dockQuiet"))})
+
+    for name in ICONS:
+        shutil.copy2(APP / "icons" / f"{name}.svg", OUT / "icons" / f"{name}.svg")
+    metrics_src = (APP / "icons" / "metrics.js").read_text(encoding="utf-8")
+    metrics = json.loads(metrics_src[metrics_src.index("{"): metrics_src.rindex("}") + 1])
+    keep = {k: metrics[k] for k in ICONS}
+
+    for weight in (500, 600):
+        f = TTFont(APP / "manrope.woff2")
+        f.flavor = None
+        inst = instancer.instantiateVariableFont(f, {"wght": weight})
+        make_legacy_safe(inst)
+        inst.save(OUT / "fonts" / f"Manrope-{weight}.ttf")
+
+    for src, name in LICENCES.items():
+        shutil.copy2(src, ROOT / "launcher" / "licenses" / name)
+
+    (OUT / "catalog.js").write_text(
+        "/* Generated by scripts/import_cleanframe_assets.py from CleanFrame. */\n"
+        "window.DockWallpapers = " + json.dumps(walls, ensure_ascii=False, indent=1) + ";\n"
+        "window.DockIconMetrics = " + json.dumps(keep) + ";\n",
+        encoding="utf-8")
+    total = sum(p.stat().st_size for p in OUT.rglob("*") if p.is_file())
+    print(f"{len(walls)} wallpapers, {len(ICONS)} icons, 2 font weights -> {OUT} ({total / 1e6:.1f} MB)")
+
+
+if __name__ == "__main__":
+    main()

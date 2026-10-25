@@ -1,0 +1,6 @@
+# Baseline snapshots are checksummed in backups/manifest.sha256: store them byte-for-byte.
+backups/** -text
+*.ttf binary
+*.jpg binary
+*.png binary
+

@@ -1,0 +1,35 @@
+# dependencies / generated
+node_modules/
+build/
+test-results/
+playwright-report/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Samsung binaries (download them, see README "Setup")
+tools/*.exe
+tools/sdb
+
+# written into launcher/ by `tizen package` at signing time; never commit
+launcher/author-signature.xml
+launcher/signature*.xml
+launcher/.manifest.tmp
+
+# local scratch: CleanFrame checkout, debug artefacts, live TV snapshots
+_ref/
+_dl/
+_cdp_port.txt
+backups/applist_current.txt
+backups/applist_post_restore.txt
+backups/vd_applist_current.txt
+
+# signing material lives OUTSIDE the repo (~/tizen-studio-data and your password file); belt and braces:
+*.p12
+*.pwd
+*.csr
+*-password.env
+
+# your own TV snapshot identifies your TV and Wi-Fi: never publish it
+backups/
+

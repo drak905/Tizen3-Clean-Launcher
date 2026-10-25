@@ -1,0 +1,139 @@
+/* Home screen modelled on CleanFrame (https://github.com/nthnclrk/CleanFrame, MIT): photograph, 12-hour
+   clock, quiet top-right controls and a frosted dock. Rewritten for Tizen 3.0 (WebKit 538): no CSS
+   variables, no flex gap, no inset, no live blur. Glass is CleanFrame's pre-rendered material. */
+
+@font-face { font-family: "Manrope"; font-weight: 500; font-style: normal; src: url("../assets/fonts/Manrope-500.ttf") format("truetype"); }
+@font-face { font-family: "Manrope"; font-weight: 600; font-style: normal; src: url("../assets/fonts/Manrope-600.ttf") format("truetype"); }
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-user-select: none; user-select: none; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+body {
+  font-family: "Manrope", Arial, sans-serif; font-weight: 500; color: #f4f4f1;
+  -webkit-font-smoothing: antialiased;
+}
+.stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; }
+
+/* ---------- Photograph ---------- */
+.bg { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+.photo {
+  position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+  background: #1a1d1f no-repeat 50% 50%; background-size: 1920px 1080px;
+  opacity: 0; -webkit-transition: opacity 900ms linear; transition: opacity 900ms linear;
+}
+.photo.is-on { opacity: 1; }
+.shade {
+  position: absolute; left: 0; top: 0; width: 1920px; height: 300px;
+  background: -webkit-linear-gradient(top, rgba(4,10,12,.32), rgba(4,10,12,.14) 150px, rgba(4,10,12,0));
+  background: linear-gradient(to bottom, rgba(4,10,12,.32), rgba(4,10,12,.14) 150px, rgba(4,10,12,0));
+}
+.tone-light .shade {
+  background: -webkit-linear-gradient(top, rgba(4,10,12,.42), rgba(4,10,12,.2) 160px, rgba(4,10,12,0));
+  background: linear-gradient(to bottom, rgba(4,10,12,.42), rgba(4,10,12,.2) 160px, rgba(4,10,12,0));
+}
+.scrim {
+  position: absolute; left: 0; top: 560px; width: 1920px; height: 520px;
+  background: -webkit-linear-gradient(top, rgba(4,10,12,0), rgba(4,10,12,.42) 70%, rgba(4,10,12,.52));
+  background: linear-gradient(to bottom, rgba(4,10,12,0), rgba(4,10,12,.42) 70%, rgba(4,10,12,.52));
+}
+
+/* ---------- Clock (top left) ---------- */
+.caption { position: absolute; z-index: 2; left: 140px; top: 72px; }
+.clock {
+  display: block; font-size: 48px; line-height: 64px; font-weight: 500; letter-spacing: -1.5px;
+  white-space: nowrap; color: #f4f4f1; text-shadow: 0 1px 3px rgba(0,0,0,.22);
+}
+
+/* ---------- Quiet controls (top right) ---------- */
+.utils {
+  position: absolute; z-index: 3; right: 112px; top: 72px; height: 64px;
+  display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center;
+}
+.u {
+  position: relative; height: 64px; margin-left: 8px; padding: 0 14px;
+  display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center;
+  font-size: 28px; line-height: 36px; letter-spacing: -.2px; white-space: nowrap; color: #fffbf4;
+  text-shadow: 0 1px 2px rgba(14,10,6,.40), 0 2px 8px rgba(14,10,6,.24);
+  opacity: .66; -webkit-transition: opacity 140ms linear; transition: opacity 140ms linear;
+}
+.u:first-child { margin-left: 0; }
+.utils.is-awake .u { opacity: .74; }
+.u.is-focus, .utils.is-awake .u.is-focus { opacity: 1; }
+.u-ico { width: 32px; height: 32px; margin-right: 10px; display: block; }
+.lens {
+  position: absolute; z-index: 2; left: 0; top: 74px; width: 200px; height: 60px; border-radius: 30px;
+  overflow: hidden; opacity: 0; -webkit-transition: opacity 120ms linear; transition: opacity 120ms linear;
+  -webkit-transform: translateZ(0); transform: translateZ(0);
+}
+.lens.is-on { opacity: 1; }
+.lens-img { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; background: no-repeat 0 0; background-size: 1920px 1080px; }
+.lens-veil {
+  position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-radius: 30px;
+  background: rgba(12,10,8,.12); box-shadow: inset 0 1px 0 rgba(255,250,240,.24);
+}
+
+/* ---------- Dock ---------- */
+.dock { position: absolute; z-index: 2; left: 96px; top: 676px; width: 1728px; height: 232px; }
+.mat {
+  position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-radius: 48px; overflow: hidden;
+  -webkit-transform: translateZ(0); transform: translateZ(0);
+}
+.mat-img { position: absolute; left: -96px; top: -676px; width: 1920px; height: 1080px; background: no-repeat 0 0; background-size: 1920px 1080px; }
+.mat-scrim {
+  position: absolute; left: -96px; top: -116px; width: 1920px; height: 520px;
+  background: -webkit-linear-gradient(top, rgba(4,10,12,0), rgba(4,10,12,.42) 70%, rgba(4,10,12,.52));
+  background: linear-gradient(to bottom, rgba(4,10,12,0), rgba(4,10,12,.42) 70%, rgba(4,10,12,.52));
+}
+.mat-veil { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: rgba(8,14,18,.16); }
+.tone-light .mat-veil { background: rgba(8,14,18,.27); }
+
+.shelf { position: absolute; left: 16px; top: 0; bottom: 0; width: 1696px; overflow: hidden; }
+.shelf.fade-r { -webkit-mask-image: -webkit-linear-gradient(left, #000 1564px, rgba(0,0,0,.2)); }
+.shelf.fade-l { -webkit-mask-image: -webkit-linear-gradient(right, #000 1564px, rgba(0,0,0,.2)); }
+.shelf.fade-l.fade-r { -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,.2), #000 132px, #000 1564px, rgba(0,0,0,.2)); }
+.track {
+  position: absolute; left: 0; top: 0; height: 232px;
+  -webkit-transition: -webkit-transform 180ms cubic-bezier(.2,.7,.2,1); transition: transform 180ms cubic-bezier(.2,.7,.2,1);
+}
+.plate {
+  position: absolute; left: 0; top: 16px; width: 288px; height: 200px; border-radius: 32px; opacity: 0;
+  background: -webkit-linear-gradient(-80deg, rgba(255,255,255,.30), rgba(255,255,255,.16) 58%, rgba(255,255,255,.22));
+  background: linear-gradient(170deg, rgba(255,255,255,.30), rgba(255,255,255,.16) 58%, rgba(255,255,255,.22));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.34);
+  -webkit-transition: -webkit-transform 180ms cubic-bezier(.2,.7,.2,1), opacity 120ms linear;
+  transition: transform 180ms cubic-bezier(.2,.7,.2,1), opacity 120ms linear;
+}
+.plate.on-focus { opacity: 1; }
+.plate.on-sel { opacity: 1; background: rgba(255,255,255,.11); box-shadow: none; }
+
+.tile { position: absolute; left: 0; top: 16px; width: 288px; height: 200px; border-radius: 32px; }
+.mark { position: absolute; left: 84px; top: 34px; width: 120px; height: 72px; overflow: visible; opacity: .84;
+  -webkit-transition: opacity 160ms linear, -webkit-transform 180ms cubic-bezier(.2,.7,.2,1);
+  transition: opacity 160ms linear, transform 180ms cubic-bezier(.2,.7,.2,1); }
+.mark img { position: absolute; display: block; }
+.monogram { text-align: center; font-size: 38px; line-height: 72px; font-weight: 600; letter-spacing: -.5px; }
+.label {
+  position: absolute; left: 4px; right: 4px; top: 128px; text-align: center;
+  font-size: 36px; line-height: 44px; letter-spacing: -.8px; font-weight: 500;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .84;
+  -webkit-transition: opacity 160ms linear; transition: opacity 160ms linear;
+}
+.tile.is-focus .mark, .tile.is-focus .label { opacity: 1; }
+.tile.is-focus .mark { -webkit-transform: translateY(-3px) scale(1.04); transform: translateY(-3px) scale(1.04); }
+.tile.is-sel .mark, .tile.is-sel .label { opacity: .94; }
+.tile.is-outside { opacity: 0; }
+
+/* ---------- Status + diagnostics ---------- */
+.toast {
+  position: absolute; z-index: 5; left: 660px; top: 600px; width: 600px; padding: 14px 24px; border-radius: 32px;
+  text-align: center; font-size: 26px; line-height: 34px; color: #fffbf4;
+  background: rgba(12,14,16,.62); box-shadow: inset 0 1px 0 rgba(255,250,240,.18);
+  opacity: 0; -webkit-transition: opacity 160ms linear; transition: opacity 160ms linear;
+}
+.toast.is-on { opacity: 1; }
+.toast.is-error { background: rgba(120,24,18,.82); }
+.debug {
+  display: none; position: absolute; z-index: 6; top: 160px; right: 40px; width: 760px; padding: 14px 18px;
+  border-radius: 12px; font: 20px/1.35 monospace; white-space: pre-wrap;
+  background: rgba(0,0,0,.72); color: #9effa8; border: 1px solid rgba(158,255,168,.4);
+}
+.debug.is-on { display: block; }

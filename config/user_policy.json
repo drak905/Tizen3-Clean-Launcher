@@ -1,0 +1,36 @@
+{
+  "model": "UA43M5503AKXXV",
+  "os": "Tizen 3.0",
+  "never_uninstall": true,
+  "uninstall_pkgids": [],
+  "features_kept": {
+    "smart_view_mirroring": true,
+    "live_dvb_t2_tv": true,
+    "netflix_lowmem_helper": true
+  },
+  "dock_favorites": [
+    {
+      "title": "YouTube",
+      "app_id": "9Ur5IzDKqV.TizenYouTube"
+    },
+    {
+      "title": "Netflix",
+      "app_id": "org.tizen.netflix-app"
+    },
+    {
+      "title": "Apple TV",
+      "app_id": "Y6A54cEa22.AppleTV"
+    },
+    {
+      "title": "FPT Play",
+      "app_id": "ZTpEFWgfa9.FPTPlay"
+    },
+    {
+      "title": "Spotify",
+      "app_id": "rJeHak5zRg.Spotify"
+    }
+  ],
+  "user_approved": true,
+  "approval_mode": "defaults (auto)",
+  "note": "Phase-3 safety record. The dock itself is defined in launcher/js/config.js."
+}
